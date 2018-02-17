@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="zip.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<title>ToDo</title>
+<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+  <div class="wrapper">
+    <div class="content">
+      <label>郵便番号</label>
+      <span class="content_form">
+        <input id="zip" name="zip" type="text" placeholder="1600002"/>
+      </span>
+      <span class="content_form">
+        <button type="button" class="btn btn-info" class="studentEnrollment_button" type="button"  onClick="setState()">住所を自動で入力する</button>
+      </span>
+    </div>
+    <div class="content">
+      <label>都道府県</label>
+      <span class="content_form">
+        <input id="state" name="state" type="text" placeholder="東京都" />
+      </span>
+    </div>
+    <div class="content">
+      <label>市区町村</label>
+      <span class="content_form">
+        <input id="city" name="city" type="text" placeholder="新宿区" />
+      </span>
+    </div>
+    <div class="content">
+      <label>番地</label>
+      <span class="content_form">
+        <input id="address1" name="address1" type="text"  placeholder="西新宿666" />
+      </span>
+    </div>
+    <div class="content">
+      <label>建物名・階・部屋番号</label>
+      <span class="content_form">
+        <input id="address2" name="address2" type="text"  v-model="input1"placeholder="ビルヂング666" />
+      </span>
+    </div>
+    <button type="button" v-on:click="addTodo" class="btn btn-info">送信</button>
+  </div>
+
+  <div class="check">
+  <ul>
+      <li v-for="(todo, index) in todos" >
+          <todo-item   v-bind:todo="todo"  v-on:remove= "todos.splice(index, 1)"  ></todo-item>
+      </li>
+  </ul>
+</div>
+
+</div>
+
+
+<!--<div>
+    <input type="text" v-model="input">
+    <button type="button" v-on:click="addTodo" class="btn btn-info">送信</button>
+</div>-->
+
+
+</body>
+<script src="test.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script>
+
+</script>
+</html>
