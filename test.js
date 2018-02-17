@@ -1,7 +1,54 @@
 var jstate;
 var jcity;
 var jaddress1;
+var jaddress2;
 
+function test(){
+    jstate = document.getElementById("state").value;
+    jcity = document.getElementById("city").value;
+    jaddress1 = document.getElementById("address1").value;
+    jaddress2 =  document.getElementById("address2").value;
+    jall = jstate +"  "+ jcity + "  " + jaddress1 + "  " + jaddress2;
+}
+
+
+Vue.component('todo-item', {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+ },
+ template: '<div>' +
+  '<input type="checkbox" v-model="todo.completed">'  +
+  '<span>{{ todo.text }}</span>'  +
+  '<button type="button" v-on:click="onClickRemove" class="btn-danger">削除</button>' +
+ '</div>',
+
+ methods: {
+   onClickRemove: function () {
+     this.$emit('remove')
+   }
+ }
+});
+
+var vm = new Vue({
+ el: '#app',
+  data: {
+    input: ' ',
+    todos: [
+    ]
+  },
+  methods: {
+    addTodo: function () {
+      this.todos.push({
+        completed: false,
+        text: jall
+      })
+      input = ' '
+    }
+  }
+});
 
 // 郵便番号から住所を取得
 function setState() {
@@ -31,11 +78,6 @@ function setState() {
                 $('#state').val(obj[3]['long_name']); // 都道府県
                 $('#city').val(obj[2]['long_name']);  // 市区町村
                 $('#address1').val(obj[1]['long_name']); // 番地
-                jstate = obj[3]['long_name'];
-                jcity = obj[2]['long_name'];
-                jaddress1 = obj[1]['long_name'];
-                jall = jstate + jcity + jaddress1;
-                alert( jstate + jcity + jaddress1);
             }else{
                 alert('住所情報が取得できませんでした');
                 return false;
@@ -43,41 +85,3 @@ function setState() {
         }
     });
 }
-
-Vue.component('todo-item', {
-  props: {
-    todo: {
-      type: Object,
-      required: true
-    }
- },
- template: '<div>' +
-  '<input type="checkbox" v-model="todo.completed">'  +
-  '<span>{{ todo.text }}</span>'  +
-  '<button type="button" v-on:click="onClickRemove" class="btn-danger">削除</button>' +
- '</div>',
-
- methods: {
-   onClickRemove: function () {
-     this.$emit('remove')
-   }
- }
-});
-
-var vm = new Vue({
- el: '#app',
-  data: {
-    input1: '',
-    todos: [
-    ]
-  },
-  methods: {
-    addTodo: function () {
-      this.todos.push({
-        completed: false,
-        text: this.input1
-      })
-      this.input1 = ''
-    }
-  },
-});

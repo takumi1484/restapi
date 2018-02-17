@@ -41,16 +41,16 @@
     <div class="content">
       <label>番地</label>
       <span class="content_form">
-        <input id="address1" name="address1" type="text"  placeholder="西新宿666" />
+        <input id="address1" name="address1" type="text" placeholder="西新宿666" />
       </span>
     </div>
     <div class="content">
       <label>建物名・階・部屋番号</label>
       <span class="content_form">
-        <input id="address2" name="address2" type="text"  v-model="input1"placeholder="ビルヂング666" />
+        <input id="address2" name="address2" type="text" placeholder="ビルヂング666" autocomplete="off"/>
       </span>
     </div>
-    <button type="button" v-on:click="addTodo" class="btn btn-info">送信</button>
+    <button type="button" v-on:click="addTodo" onclick="test()" class="btn btn-info">送信</button>
   </div>
 
   <div class="check">
@@ -73,7 +73,5 @@
 </body>
 <script src="test.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script>
 
-</script>
 </html>
